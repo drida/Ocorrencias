@@ -1,7 +1,5 @@
 package br.univesp.ocorrencias.basedados;
 
-import android.support.annotation.NonNull;
-
 import java.sql.SQLException;
 
 public class BasedadosUsuario extends Basedados{
@@ -14,7 +12,7 @@ public class BasedadosUsuario extends Basedados{
             getResultSet("select * from public.usuario where email = '"+usuario+"' and pass = '"+senha+"';" );
             while (resultSet.next()) {
                 usuarioId = resultSet.getInt(1);
-                usuarioNome =  resultSet.getString(2);
+                usuarioNome = resultSet.getString(2);
                 return true;
             }
         } catch (SQLException throwables) {

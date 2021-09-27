@@ -5,8 +5,12 @@
       <map>
         <entry key="..\:/900-ServidorProducao/DriDaGithub/Ocorrencias/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/900-ServidorProducao/DriDaGithub/Ocorrencias/app/src/main/res/layout/activity_tab.xml" value="0.20833333333333334" />
+        <entry key="..\:/900-ServidorProducao/DriDaGithub/Ocorrencias/app/src/main/res/layout/fragment_abstract.xml" value="0.36666666666666664" />
+        <entry key="..\:/900-ServidorProducao/DriDaGithub/Ocorrencias/app/src/main/res/layout/fragment_insert.xml" value="0.23697916666666666" />
         <entry key="..\:/900-ServidorProducao/DriDaGithub/Ocorrencias/app/src/main/res/layout/fragment_item.xml" value="0.36666666666666664" />
         <entry key="..\:/900-ServidorProducao/DriDaGithub/Ocorrencias/app/src/main/res/layout/fragment_item_list.xml" value="0.37726449275362317" />
+        <entry key="..\:/900-ServidorProducao/DriDaGithub/Ocorrencias/app/src/main/res/layout/fragment_new.xml" value="0.23697916666666666" />
+        <entry key="..\:/900-ServidorProducao/DriDaGithub/Ocorrencias/app/src/main/res/layout/fragment_scrolling.xml" value="0.22291666666666668" />
         <entry key="..\:/900-ServidorProducao/DriDaGithub/Ocorrencias/app/src/main/res/layout/fragment_tab.xml" value="0.35260416666666666" />
       </map>
     </option>

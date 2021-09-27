@@ -3,7 +3,6 @@ package br.univesp.ocorrencias.basedados;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Basedados {
@@ -21,7 +20,6 @@ public class Basedados {
     public Basedados() {
         this.url = String.format(this.url, this.host, this.port, this.database);
         connect();
-        System.out.println("connection status : " + status);
     }
 
     private void connect() {
@@ -67,13 +65,9 @@ public class Basedados {
             public void run() {
                 Statement statement = null;
                 try {
-                    try {
-                        resultSet = null;
-                        statement = connection.createStatement();
-                        resultSet = statement.executeQuery(query);
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    resultSet = null;
+                    statement = connection.createStatement();
+                    resultSet = statement.executeQuery(query);
                 } catch (Exception e) {
                     System.out.print(e.getMessage());
                     e.printStackTrace();

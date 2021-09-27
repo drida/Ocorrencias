@@ -1,14 +1,19 @@
 package br.univesp.ocorrencias;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import br.univesp.ocorrencias.basedados.Basedados;
+import br.univesp.ocorrencias.basedados.BasedadosUsuario;
 
 public class MainActivity extends AppCompatActivity {
 
-    Basedados bd = new Basedados();
+    BasedadosUsuario bdUsuario = new BasedadosUsuario();
     EditText edUsuario;
     EditText edSenha;
     Button btAcessar;
@@ -28,11 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
                 String usuario = edUsuario.getText().toString();
                 String senha = edSenha.getText().toString();
-
-                bd.validarAcesso(usuario, senha);
-
-                //Intent i = new Intent(MainActivity.this, AcessActivity.class);
-                //startActivity(i);
+                boolean logado = bdUsuario.validarAcesso(usuario, senha);
+                if(logado) {
+                    Intent i = new Intent(MainActivity.this, TabActivity.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(MainActivity.this,"Usuário ou Senha, inválido !", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

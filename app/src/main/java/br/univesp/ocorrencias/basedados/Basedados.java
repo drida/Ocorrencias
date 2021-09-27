@@ -1,4 +1,4 @@
-package br.univesp.ocorrencias;
+package br.univesp.ocorrencias.basedados;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class Basedados {
     private Connection connection;
-    private ResultSet resultSet;
+    public ResultSet resultSet;
 
     private String url = "jdbc:postgresql://%s:%d/%s";
     private final String host = "ec2-18-235-45-217.compute-1.amazonaws.com";
@@ -61,7 +61,7 @@ public class Basedados {
         return c;
     }
 
-    private void getResultSet(String query) {
+    void getResultSet(String query) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -90,18 +90,6 @@ public class Basedados {
     }
 
     public boolean validarAcesso(String usuario, String senha) {
-        try {
-            getResultSet("select * from public.usuario where email = '"+usuario+"' and pass = '"+senha+"';" );
-            while (resultSet.next()) {
-                System.out.println("Usuario: " + resultSet.getString(1));
-                System.out.println("Usuario: " + resultSet.getString(2));
-                System.out.println("Usuario: " + resultSet.getString(3));
-                System.out.println("Usuario: " + resultSet.getString(4));
-                return true;
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
         return false;
     }
 }

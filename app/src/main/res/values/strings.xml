@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Ocorrencias</string>
+    <string name="app_name">Ocorrências</string>
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="tab_text_1">Lista</string>
+    <string name="tab_text_2">Nova</string>
+    <string name="tab_text_3">Resumo</string>
 </resources>

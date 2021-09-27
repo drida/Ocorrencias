@@ -6,13 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <EditText
+        android:id="@+id/edUsuario"
+        android:layout_width="300dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="38dp"
+        android:ems="10"
+        android:hint="e-mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/edSenha"
+        android:layout_width="300dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="38dp"
+        android:ems="10"
+        android:hint="senha"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/edUsuario"
+        app:layout_constraintStart_toStartOf="@+id/edUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/edUsuario" />
+
+    <Button
+        android:id="@+id/btAcessar"
+        android:layout_width="88dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="39dp"
+        android:text="ACESSAR"
+        app:layout_constraintEnd_toEndOf="@+id/edSenha"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="@+id/edSenha"
+        app:layout_constraintTop_toBottomOf="@+id/edSenha" />
+
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="158dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="156dp"
+        android:text="Nome Empresa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.Constraints
+        android:id="@+id/constraints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="-73dp" />
 
 </android.support.constraint.ConstraintLayout>

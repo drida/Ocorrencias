@@ -2,9 +2,13 @@ package br.univesp.ocorrencias;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public class PgConnection {
+public class Basedados {
     private Connection connection;
+    private ResultSet resultSet;
 
     private String url = "jdbc:postgresql://%s:%d/%s";
     private final String host = "ec2-18-235-45-217.compute-1.amazonaws.com";
@@ -14,7 +18,7 @@ public class PgConnection {
     private final String pass = "1325489a683f1ea76102bee3a6cdf5663ae1788094dd3da4b111a216a4c6741e";
     private boolean status;
 
-    public PgConnection() {
+    public Basedados() {
         this.url = String.format(this.url, this.host, this.port, this.database);
         connect();
         System.out.println("connection status : " + status);
@@ -55,5 +59,49 @@ public class PgConnection {
         }
 
         return c;
+    }
+
+    private void getResultSet(String query) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Statement statement = null;
+                try {
+                    try {
+                        resultSet = null;
+                        statement = connection.createStatement();
+                        resultSet = statement.executeQuery(query);
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    System.out.print(e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.status = false;
+        }
+    }
+
+    public boolean validarAcesso(String usuario, String senha) {
+        try {
+            getResultSet("select * from public.usuario where email = '"+usuario+"' and pass = '"+senha+"';" );
+            while (resultSet.next()) {
+                System.out.println("Usuario: " + resultSet.getString(1));
+                System.out.println("Usuario: " + resultSet.getString(2));
+                System.out.println("Usuario: " + resultSet.getString(3));
+                System.out.println("Usuario: " + resultSet.getString(4));
+                return true;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 }

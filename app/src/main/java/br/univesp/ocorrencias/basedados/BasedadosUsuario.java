@@ -4,8 +4,8 @@ import java.sql.SQLException;
 
 public class BasedadosUsuario extends Basedados{
 
-    int usuarioId;
-    String usuarioNome;
+    static int usuarioId;
+    static String usuarioNome;
 
     public boolean validarAcesso(String usuario, String senha) {
         try {
@@ -15,9 +15,17 @@ public class BasedadosUsuario extends Basedados{
                 usuarioNome = resultSet.getString(2);
                 return true;
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
+    }
+
+    public static int getUsuarioId() {
+        return usuarioId;
+    }
+
+    public static String getUsuarioNome() {
+        return usuarioNome;
     }
 }

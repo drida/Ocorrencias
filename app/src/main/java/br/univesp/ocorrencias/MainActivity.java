@@ -13,7 +13,7 @@ import br.univesp.ocorrencias.basedados.BasedadosUsuario;
 
 public class MainActivity extends AppCompatActivity {
 
-    BasedadosUsuario bdUsuario = new BasedadosUsuario();
+    static BasedadosUsuario bdUsuario = new BasedadosUsuario();
     EditText edUsuario;
     EditText edSenha;
     Button btAcessar;
@@ -43,4 +43,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public static Basedados getDbUsuario() {
+        return bdUsuario;
+    }
+
 }

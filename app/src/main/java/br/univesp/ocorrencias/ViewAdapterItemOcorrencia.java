@@ -5,27 +5,27 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import br.univesp.ocorrencias.PlaceholderContent.PlaceholderItem;
+import br.univesp.ocorrencias.PlaceholderItemOcorrencia.PlaceholderItem;
 import br.univesp.ocorrencias.databinding.FragmentItemBinding;
 
 import java.util.List;
 
-public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
+public class ViewAdapterItemOcorrencia extends RecyclerView.Adapter<ViewAdapterItemOcorrencia.ViewHolderItem> {
 
     private final List<PlaceholderItem> mValues;
 
-    public MyItemRecyclerViewAdapter(List<PlaceholderItem> items) {
+    public ViewAdapterItemOcorrencia(List<PlaceholderItem> items) {
         mValues = items;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolderItem onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new ViewHolder(FragmentItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolderItem(FragmentItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolderItem holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).content);
@@ -37,13 +37,13 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolderItem extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;
         public final TextView mDetailsView;
         public PlaceholderItem mItem;
 
-        public ViewHolder(FragmentItemBinding binding) {
+        public ViewHolderItem(FragmentItemBinding binding) {
             super(binding.getRoot());
             mIdView = binding.itemNumber;
             mContentView = binding.content;

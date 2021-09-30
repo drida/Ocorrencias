@@ -21,9 +21,9 @@ public class TabActivity extends AppCompatActivity {
         binding = ActivityTabBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        TabActivityAdapter tabActivityAdapter = new TabActivityAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = binding.viewPager;
-        viewPager.setAdapter(sectionsPagerAdapter);
+        viewPager.setAdapter(tabActivityAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = binding.fab;

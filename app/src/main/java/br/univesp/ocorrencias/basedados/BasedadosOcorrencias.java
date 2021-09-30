@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 
 public class BasedadosOcorrencias extends Basedados{
 
-    String query;
     public ResultSet getOcorrencias(int usuarioId) {
+        String query;
         try {
             query = "select o.id, emp.nome nome_empresa, eqp.nome nome_equipe, " +
                     "sts.nome nome_status, tpo.nome nome_tipo, " +
@@ -27,4 +27,15 @@ public class BasedadosOcorrencias extends Basedados{
         return null;
     }
 
+    public boolean insertOcorrencia(int usuarioId, int empresaId) {
+        String query;
+        try {
+            query = "insert into ocorrencia (idempresa, idusuario) values ("+empresaId+","+usuarioId+";";
+            getResultSet(query);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();;
+        }
+        return false;
+    }
 }

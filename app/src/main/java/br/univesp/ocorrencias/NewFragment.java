@@ -5,41 +5,41 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NewFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+import br.univesp.ocorrencias.basedados.BasedadosEmpresa;
+import br.univesp.ocorrencias.basedados.BasedadosOcorrencias;
+import br.univesp.ocorrencias.basedados.BasedadosUsuario;
+
 public class NewFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    static BasedadosOcorrencias bdOcorrencias = new BasedadosOcorrencias();
+    static BasedadosUsuario bdUsuario = new BasedadosUsuario();
+    static BasedadosEmpresa bdEmpresa = new BasedadosEmpresa();
 
-    // TODO: Rename and change types of parameters
+    static int usuarioId;
+    static int empresaId;
+    static Spinner spEmpresas;
+    static ArrayList<String> alEmpresas;
+
+    static Button btGravar;
+
+    private static final String ARG_PARAM1 = "param1";
     private String mParam1;
-    private String mParam2;
 
     public NewFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NewFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static NewFragment newInstance(String param1, String param2) {
+    public static NewFragment newInstance(String param1) {
         NewFragment fragment = new NewFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,14 +49,42 @@ public class NewFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new, container, false);
+        View view = inflater.inflate(R.layout.fragment_new, container, false);
+
+        makeUsuario(view);
+        makeEmpresa(view);
+
+        btGravar = (Button) view.findViewById(R.id.btGravar);
+        btGravar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int index = spEmpresas.getSelectedItemPosition();
+                empresaId = bdEmpresa.getEmpresaId(alEmpresas.get(index));
+                bdOcorrencias.insertOcorrencia(usuarioId, empresaId);
+            }
+        });
+
+        return view;
+    }
+
+    private void makeUsuario (View view) {
+        bdUsuario = (BasedadosUsuario) MainActivity.getDbUsuario();
+        usuarioId = bdUsuario.getUsuarioId();
+        TextView edUsuario = (TextView) view.findViewById(R.id.tvUsuarioNome);
+        edUsuario.setText(bdUsuario.getUsuarioNome());
+    }
+
+    private void makeEmpresa (View view) {
+        alEmpresas = bdEmpresa.getEmpresasToArrayList();
+        spEmpresas = (Spinner) view.findViewById(R.id.spEmpresa);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, alEmpresas);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spEmpresas.setAdapter(adapter);
     }
 }

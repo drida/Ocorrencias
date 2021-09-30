@@ -15,8 +15,7 @@ public class ItemFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
 
-    public ItemFragment() {
-    }
+    public ItemFragment() {}
 
     public static ItemFragment newInstance(int columnCount) {
         ItemFragment fragment = new ItemFragment();
@@ -40,7 +39,6 @@ public class ItemFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
 
-        // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;

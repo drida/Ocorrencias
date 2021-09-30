@@ -1,6 +1,5 @@
 package br.univesp.ocorrencias;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -8,19 +7,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import br.univesp.ocorrencias.AbstractFragment;
-import br.univesp.ocorrencias.ItemFragment;
-import br.univesp.ocorrencias.NewFragment;
-import br.univesp.ocorrencias.R;
-
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class TabActivityAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private static final int TAB_COUNT = 3;
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
     private final Context mContext;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
+    public TabActivityAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
     }

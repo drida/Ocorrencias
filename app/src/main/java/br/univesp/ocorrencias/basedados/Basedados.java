@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class Basedados {
     private Connection connection;
@@ -59,15 +60,26 @@ public class Basedados {
         return c;
     }
 
-    void getResultSet(String query) {
+    void getResultSet (String query) {
+        getResultSet(query, true);
+    }
+
+    void getResultSet (String query, boolean select) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 Statement statement = null;
                 try {
+                    System.out.println("query:" + query);
                     resultSet = null;
+                    int rs = 0;
                     statement = connection.createStatement();
-                    resultSet = statement.executeQuery(query);
+                    if (select) {
+                        resultSet = statement.executeQuery(query);
+                    } else {
+                        rs = statement.executeUpdate(query);
+                    }
+                    System.out.println("ResultSet: " + resultSet.toString() + rs);
                 } catch (Exception e) {
                     System.out.print(e.getMessage());
                     e.printStackTrace();
@@ -83,7 +95,27 @@ public class Basedados {
         }
     }
 
-    public boolean validarAcesso(String usuario, String senha) {
-        return false;
+    public int getId(String query) {
+        try {
+            getResultSet(query);
+            while (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public ArrayList<String> toArrayList() {
+        ArrayList<String> arrayList = new ArrayList<String>();
+        try {
+            while (resultSet.next()) {
+                arrayList.add(resultSet.getString(2));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return arrayList;
     }
 }

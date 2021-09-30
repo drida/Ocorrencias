@@ -13,30 +13,112 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="@string/hello_blank_fragment"
+        android:text="NomeUsuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tvEmpresa"
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Empresa"
+        app:layout_constraintEnd_toStartOf="@+id/spEmpresa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spEmpresa" />
+
+    <TextView
+        android:id="@+id/tvEquipe"
+        android:layout_width="43dp"
+        android:layout_height="wrap_content"
+        android:text="Equipe"
+        app:layout_constraintStart_toStartOf="@+id/tvEmpresa"
+        app:layout_constraintTop_toTopOf="@+id/spEquipe" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        app:layout_constraintStart_toStartOf="@+id/tvEquipe"
+        app:layout_constraintTop_toTopOf="@+id/spStatus" />
+
+    <TextView
+        android:id="@+id/tvTipoOcorrencia"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:text="Tipo Ocor."
+        app:layout_constraintStart_toStartOf="@+id/tvStatus"
+        app:layout_constraintTop_toTopOf="@+id/spTipoOcorrencia" />
+
+    <TextView
+        android:id="@+id/tvSistema"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="Sistema"
+        app:layout_constraintStart_toStartOf="@+id/tvTipoOcorrencia"
+        app:layout_constraintTop_toTopOf="@+id/spSistema" />
+
     <Spinner
         android:id="@+id/spEmpresa"
-        android:layout_width="350dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="32dp"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUsuarioNome" />
+
+    <Spinner
+        android:id="@+id/spEquipe"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spEmpresa" />
+
+    <Spinner
+        android:id="@+id/spStatus"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spEquipe" />
+
+    <Spinner
+        android:id="@+id/spTipoOcorrencia"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="32dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spStatus" />
+
+    <Spinner
+        android:id="@+id/spSistema"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="28dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spTipoOcorrencia" />
 
     <Button
         android:id="@+id/btGravar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="GRAVAR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="652dp" />
+        app:layout_constraintTop_toBottomOf="@+id/spSistema" />
 
 </android.support.constraint.ConstraintLayout>

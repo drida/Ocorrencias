@@ -1,7 +1,5 @@
 package br.univesp.ocorrencias.basedados;
 
-import java.sql.SQLException;
-
 public class BasedadosUsuario extends Basedados{
 
     static int usuarioId;

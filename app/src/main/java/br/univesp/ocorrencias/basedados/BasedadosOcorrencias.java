@@ -12,7 +12,7 @@ public class BasedadosOcorrencias extends Basedados{
                     "o.observacoes, sis.nome nome_sistema, o.funcionariosafetados, " +
                     "o.canalsuporte, o.protocolo, o.datahoraocorrencia, " +
                     "o.datahoraconclusao, o.tempoparaconclusao " +
-                    "from ocorrencia o " +
+                    "from public.ocorrencia o " +
                     "join empresa emp on emp.id = o.idempresa " +
                     "join equipe eqp on eqp.id = o.idequipe " +
                     "join status sts on sts.id = o.idstatus " +
@@ -27,15 +27,9 @@ public class BasedadosOcorrencias extends Basedados{
         return null;
     }
 
-    public boolean insertOcorrencia(int usuarioId, int empresaId) {
-        String query;
-        try {
-            query = "insert into ocorrencia (idempresa, idusuario) values ("+empresaId+","+usuarioId+";";
-            getResultSet(query);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();;
-        }
-        return false;
+    public void insertOcorrencia(int usuarioId, int empresaId, int equipeId, int statusId, int tipoOcorrenciaId, int sistemaId) {
+        String query = "insert into public.ocorrencia (idempresa, idequipe, idstatus, idusuario, idtipoocorrencia, idsistemas) values " +
+                "(" + empresaId + "," + equipeId + "," + statusId + "," + usuarioId + "," + tipoOcorrenciaId + "," + sistemaId + ");";
+        getResultSet(query, false);
     }
 }

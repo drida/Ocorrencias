@@ -10,6 +10,9 @@ public class Basedados {
     private Connection connection;
     public ResultSet resultSet;
 
+    static int usuarioId;
+    static String usuarioNome;
+
     private String url = "jdbc:postgresql://%s:%d/%s";
     private final String host = "ec2-18-235-45-217.compute-1.amazonaws.com";
     private final int port = 5432;
@@ -117,5 +120,121 @@ public class Basedados {
             e.printStackTrace();
         }
         return arrayList;
+    }
+
+    public boolean validarAcesso(String usuario, String senha) {
+        try {
+            getResultSet("select * from public.usuario where email = '"+usuario+"' and pass = '"+senha+"';" );
+            while (resultSet.next()) {
+                usuarioId = resultSet.getInt(1);
+                usuarioNome = resultSet.getString(2);
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static int getUsuarioId() {
+        return usuarioId;
+    }
+
+    public static String getUsuarioNome() {
+        return usuarioNome;
+    }
+
+    public void getEmpresas() {
+        String query = "select * from public.empresa;";
+        getResultSet(query);
+    }
+
+    public int getEmpresaId(String nome) {
+        String query = "select * from public.empresa where nome = '"+nome+"';";
+        return getId(query);
+    }
+
+    public ArrayList<String> getEmpresasToArrayList() {
+        getEmpresas();
+        return toArrayList();
+    }
+
+    public void getEquipes() {
+        String query = "select * from public.equipe;";
+        getResultSet(query);
+    }
+
+    public int getEquipeId(String nome) {
+        String query = "select * from public.equipe where nome = '"+nome+"';";
+        return getId(query);
+    }
+
+    public ArrayList<String> getEquipesToArrayList() {
+        getEquipes();
+        return toArrayList();
+    }
+
+    public void getSistemas() {
+        String query = "select * from public.sistemas;";
+        getResultSet(query);
+    }
+
+    public int getSistemaId(String nome) {
+        String query = "select * from public.sistemas where nome = '"+nome+"';";
+        return getId(query);
+    }
+
+    public ArrayList<String> getSistemasToArrayList() {
+        getSistemas();
+        return toArrayList();
+    }
+
+    public void getStatus() {
+        String query = "select * from public.status;";
+        getResultSet(query);
+    }
+
+    public void getTipoOcorrencias() {
+        String query = "select * from public.tipoocorrencia;";
+        getResultSet(query);
+    }
+
+    public int getTipoOcorrenciaId(String nome) {
+        String query = "select * from public.tipoocorrencia where nome = '"+nome+"';";
+        return getId(query);
+    }
+
+    public ArrayList<String> getTipoOcorrenciasToArrayList() {
+        getTipoOcorrencias();
+        return toArrayList();
+    }
+
+    public ResultSet getOcorrencias(int usuarioId) {
+        String query;
+        try {
+            query = "select o.id, emp.nome nome_empresa, eqp.nome nome_equipe, " +
+                    "sts.nome nome_status, tpo.nome nome_tipo, " +
+                    "o.observacoes, sis.nome nome_sistema, o.funcionariosafetados, " +
+                    "o.canalsuporte, o.protocolo, o.datahoraocorrencia, " +
+                    "o.datahoraconclusao, o.tempoparaconclusao " +
+                    "from public.ocorrencia o " +
+                    "join empresa emp on emp.id = o.idempresa " +
+                    "join equipe eqp on eqp.id = o.idequipe " +
+                    "join status sts on sts.id = o.idstatus " +
+                    "join tipoocorrencia tpo on tpo.id = o.idtipoocorrencia " +
+                    "join sistemas sis on sis.id = o.idsistemas "+
+                    "where o.idusuario = " + usuarioId + ";";
+            getResultSet(query);
+            return resultSet;
+        } catch (Exception e) {
+            e.printStackTrace();;
+        }
+        return null;
+    }
+
+    public void insertOcorrencia(int usuarioId, int empresaId, int equipeId, int statusId, int tipoOcorrenciaId, int sistemaId) {
+        String query = "insert into public.ocorrencia (idempresa, idequipe, idstatus, idusuario, idtipoocorrencia, idsistemas) values " +
+                "(" + empresaId + "," + equipeId + "," + statusId + "," + usuarioId + "," + tipoOcorrenciaId + "," + sistemaId + ");";
+        getResultSet(query, false);
     }
 }

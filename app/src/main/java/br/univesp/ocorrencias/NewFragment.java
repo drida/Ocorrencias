@@ -12,23 +12,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import br.univesp.ocorrencias.basedados.BasedadosEmpresa;
-import br.univesp.ocorrencias.basedados.BasedadosEquipe;
-import br.univesp.ocorrencias.basedados.BasedadosOcorrencias;
-import br.univesp.ocorrencias.basedados.BasedadosSistema;
-import br.univesp.ocorrencias.basedados.BasedadosStatus;
-import br.univesp.ocorrencias.basedados.BasedadosTipoOcorrencia;
-import br.univesp.ocorrencias.basedados.BasedadosUsuario;
+import br.univesp.ocorrencias.basedados.Basedados;
 
 public class NewFragment extends Fragment {
 
-    static BasedadosEmpresa bdEmpresa = new BasedadosEmpresa();
-    static BasedadosEquipe bdEquipe = new BasedadosEquipe();
-    static BasedadosOcorrencias bdOcorrencias = new BasedadosOcorrencias();
-    static BasedadosSistema bdSistema = new BasedadosSistema();
-    static BasedadosStatus bdStatus = new BasedadosStatus();
-    static BasedadosTipoOcorrencia bdTipoOcorrencia = new BasedadosTipoOcorrencia();
-    static BasedadosUsuario bdUsuario = new BasedadosUsuario();
+    static Basedados bd = (Basedados) MainActivity.getDb();
 
     static int usuarioId;
     static int empresaId;
@@ -91,17 +79,17 @@ public class NewFragment extends Fragment {
                 System.out.println("usuarioId:" + usuarioId);
                 int index;
                 index = spEmpresas.getSelectedItemPosition();
-                empresaId = bdEmpresa.getEmpresaId(alEmpresas.get(index));
+                empresaId = bd.getEmpresaId(alEmpresas.get(index));
                 index = spEquipe.getSelectedItemPosition();
-                equipeId = bdEquipe.getEquipeId(alEquipes.get(index));
+                equipeId = bd.getEquipeId(alEquipes.get(index));
                 index = spStatus.getSelectedItemPosition();
-                statusId = bdStatus.getEquipeId(alStatus.get(index));
+                statusId = bd.getEquipeId(alStatus.get(index));
                 index = spTipoOcorrencia.getSelectedItemPosition();
-                tipoOcorrenciaId = bdTipoOcorrencia.getTipoOcorrenciaId(alTipoOcorrencia.get(index));
+                tipoOcorrenciaId = bd.getTipoOcorrenciaId(alTipoOcorrencia.get(index));
                 index = spSistema.getSelectedItemPosition();
-                sistemaId = bdSistema.getSistemaId(alSistema.get(index));
+                sistemaId = bd.getSistemaId(alSistema.get(index));
 
-                bdOcorrencias.insertOcorrencia(usuarioId, empresaId, equipeId, statusId, tipoOcorrenciaId, sistemaId);
+                bd.insertOcorrencia(usuarioId, empresaId, equipeId, statusId, tipoOcorrenciaId, sistemaId);
             }
         });
 
@@ -109,14 +97,13 @@ public class NewFragment extends Fragment {
     }
 
     private void makeUsuario (View view) {
-        bdUsuario = (BasedadosUsuario) MainActivity.getDbUsuario();
-        usuarioId = bdUsuario.getUsuarioId();
+        usuarioId = bd.getUsuarioId();
         TextView edUsuario = (TextView) view.findViewById(R.id.tvUsuarioNome);
-        edUsuario.setText(bdUsuario.getUsuarioNome());
+        edUsuario.setText(bd.getUsuarioNome());
     }
 
     private void makeEmpresa (View view) {
-        alEmpresas = bdEmpresa.getEmpresasToArrayList();
+        alEmpresas = bd.getEmpresasToArrayList();
         spEmpresas = (Spinner) view.findViewById(R.id.spEmpresa);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, alEmpresas);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -124,7 +111,7 @@ public class NewFragment extends Fragment {
     }
 
     private void makeEquipe (View view) {
-        alEquipes = bdEquipe.getEquipesToArrayList();
+        alEquipes = bd.getEquipesToArrayList();
         spEquipe = (Spinner) view.findViewById(R.id.spEquipe);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, alEquipes);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -132,7 +119,7 @@ public class NewFragment extends Fragment {
     }
 
     private void makeStatus (View view) {
-        alStatus = bdStatus.getEquipesToArrayList();
+        alStatus = bd.getEquipesToArrayList();
         spStatus = (Spinner) view.findViewById(R.id.spStatus);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, alStatus);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -140,7 +127,7 @@ public class NewFragment extends Fragment {
     }
 
     private void makeTipoOcorrencia (View view) {
-        alTipoOcorrencia = bdTipoOcorrencia.getTipoOcorrenciasToArrayList();
+        alTipoOcorrencia = bd.getTipoOcorrenciasToArrayList();
         spTipoOcorrencia = (Spinner) view.findViewById(R.id.spTipoOcorrencia);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, alTipoOcorrencia);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -148,7 +135,7 @@ public class NewFragment extends Fragment {
     }
 
     private void makeSistema (View view) {
-        alSistema = bdSistema.getSistemasToArrayList();
+        alSistema = bd.getSistemasToArrayList();
         spSistema = (Spinner) view.findViewById(R.id.spSistema);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, alSistema);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);

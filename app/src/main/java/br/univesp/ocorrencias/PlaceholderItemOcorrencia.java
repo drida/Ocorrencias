@@ -6,8 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import br.univesp.ocorrencias.basedados.BasedadosOcorrencias;
-import br.univesp.ocorrencias.basedados.BasedadosUsuario;
+import br.univesp.ocorrencias.basedados.Basedados;
 
 public class PlaceholderItemOcorrencia {
 
@@ -15,8 +14,8 @@ public class PlaceholderItemOcorrencia {
     public static final Map<String, PlaceholderItem> ITEM_MAP = new HashMap<String, PlaceholderItem>();
     static {
         try {
-            BasedadosUsuario dbUsuario = (BasedadosUsuario) MainActivity.getDbUsuario();
-            BasedadosOcorrencias ocorrencias = new BasedadosOcorrencias();
+            Basedados dbUsuario = (Basedados) MainActivity.getDb();
+            Basedados ocorrencias = new Basedados();
             ResultSet rs = ocorrencias.getOcorrencias(dbUsuario.getUsuarioId());
             while (rs.next()) {
                 addItem(createPlaceholderItem(rs.getRow(), rs));

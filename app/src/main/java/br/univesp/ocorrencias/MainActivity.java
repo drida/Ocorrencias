@@ -1,7 +1,6 @@
 package br.univesp.ocorrencias;
 
 import br.univesp.ocorrencias.basedados.Basedados;
-import br.univesp.ocorrencias.basedados.BasedadosUsuario;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    static BasedadosUsuario bdUsuario = new BasedadosUsuario();
+    static Basedados bd = new Basedados();
     EditText edUsuario;
     EditText edSenha;
     Button btAcessar;
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String usuario = "admin@admin.com";//edUsuario.getText().toString();
                 String senha = "admin";//edSenha.getText().toString();
-                boolean logado = bdUsuario.validarAcesso(usuario, senha);
+                boolean logado = bd.validarAcesso(usuario, senha);
                 if(logado) {
                     Intent i = new Intent(MainActivity.this, TabActivity.class);
                     startActivity(i);
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public static Basedados getDbUsuario() {
-        return bdUsuario;
+    public static Basedados getDb() {
+        return bd;
     }
 }

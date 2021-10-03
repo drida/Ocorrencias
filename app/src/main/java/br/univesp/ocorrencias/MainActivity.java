@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String usuario = "admin@admin.com";//edUsuario.getText().toString();
-                String senha = "admin";//edSenha.getText().toString();
+                String usuario = edUsuario.getText().toString();
+                String senha = edSenha.getText().toString();
                 boolean logado = bd.validarAcesso(usuario, senha);
                 if(logado) {
                     Intent i = new Intent(MainActivity.this, TabActivity.class);

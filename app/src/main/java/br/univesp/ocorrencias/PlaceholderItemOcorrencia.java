@@ -10,19 +10,21 @@ import br.univesp.ocorrencias.basedados.Basedados;
 
 public class PlaceholderItemOcorrencia {
 
-    public static final List<PlaceholderItem> ITEMS = new ArrayList<PlaceholderItem>();
+    public static List<PlaceholderItem> ITEMS ;
     public static final Map<String, PlaceholderItem> ITEM_MAP = new HashMap<String, PlaceholderItem>();
-    static {
+
+    public static List<PlaceholderItem> getItems() {
+        ITEMS = new ArrayList<PlaceholderItem>();
         try {
-            Basedados dbUsuario = (Basedados) MainActivity.getDb();
-            Basedados ocorrencias = new Basedados();
-            ResultSet rs = ocorrencias.getOcorrencias(dbUsuario.getUsuarioId());
+            Basedados bd = (Basedados) MainActivity.getDb();
+            ResultSet rs = bd.getOcorrencias();
             while (rs.next()) {
                 addItem(createPlaceholderItem(rs.getRow(), rs));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return ITEMS;
     }
 
     private static void addItem(PlaceholderItem item) {
@@ -44,10 +46,11 @@ public class PlaceholderItemOcorrencia {
             builder.append(resultSet.getString(5)+" / ");
             builder.append(resultSet.getString(7)+"\n");
             builder.append("Func. afetado(s): "+ resultSet.getString(8)+"\n");
-            builder.append(resultSet.getString(9)+" / ");
-            builder.append(resultSet.getString(10)+"\n");
+            builder.append("Casos Impactado(s): "+ resultSet.getString(9)+"\n");
+            builder.append(resultSet.getString(10)+" / ");
+            builder.append(resultSet.getString(11)+"\n");
             builder.append(resultSet.getString(6)+"\n");
-            builder.append("Abertura: " +resultSet.getString(11)+"\n");
+            builder.append("Abertura: " +resultSet.getString(12)+"\n");
 
             detalhes = builder.toString();
         } catch (Exception e) {

@@ -14,6 +14,7 @@ public class ItemFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
+    static RecyclerView recyclerView;
 
     public ItemFragment() {}
 
@@ -41,14 +42,18 @@ public class ItemFragment extends Fragment {
 
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new ViewAdapterItemOcorrencia(PlaceholderItemOcorrencia.ITEMS));
+            recyclerView.setAdapter(new ViewAdapterItemOcorrencia(PlaceholderItemOcorrencia.getItems()));
         }
         return view;
+    }
+
+    public static void update() {
+        recyclerView.setAdapter(new ViewAdapterItemOcorrencia(PlaceholderItemOcorrencia.getItems()));
     }
 }

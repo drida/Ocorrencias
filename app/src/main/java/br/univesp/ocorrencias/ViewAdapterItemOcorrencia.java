@@ -20,7 +20,6 @@ public class ViewAdapterItemOcorrencia extends RecyclerView.Adapter<ViewAdapterI
 
     @Override
     public ViewHolderItem onCreateViewHolder(ViewGroup parent, int viewType) {
-
         return new ViewHolderItem(FragmentItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 

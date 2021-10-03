@@ -194,6 +194,16 @@ public class Basedados {
         getResultSet(query);
     }
 
+    public int getStatusId(String nome) {
+        String query = "select * from public.status where nome = '"+nome+"';";
+        return getId(query);
+    }
+
+    public ArrayList<String> getStatusToArrayList() {
+        getStatus();
+        return toArrayList();
+    }
+
     public void getTipoOcorrencias() {
         String query = "select * from public.tipoocorrencia;";
         getResultSet(query);
@@ -209,21 +219,10 @@ public class Basedados {
         return toArrayList();
     }
 
-    public ResultSet getOcorrencias(int usuarioId) {
+    public ResultSet getOcorrencias() {
         String query;
         try {
-            query = "select o.id, emp.nome nome_empresa, eqp.nome nome_equipe, " +
-                    "sts.nome nome_status, tpo.nome nome_tipo, " +
-                    "o.observacoes, sis.nome nome_sistema, o.funcionariosafetados, " +
-                    "o.canalsuporte, o.protocolo, o.datahoraocorrencia, " +
-                    "o.datahoraconclusao, o.tempoparaconclusao " +
-                    "from public.ocorrencia o " +
-                    "join empresa emp on emp.id = o.idempresa " +
-                    "join equipe eqp on eqp.id = o.idequipe " +
-                    "join status sts on sts.id = o.idstatus " +
-                    "join tipoocorrencia tpo on tpo.id = o.idtipoocorrencia " +
-                    "join sistemas sis on sis.id = o.idsistemas "+
-                    "where o.idusuario = " + usuarioId + ";";
+            query = "select * from public.ocorrencias where idusuario = " + usuarioId + ";";
             getResultSet(query);
             return resultSet;
         } catch (Exception e) {

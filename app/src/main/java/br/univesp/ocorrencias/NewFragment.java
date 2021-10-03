@@ -40,9 +40,7 @@ public class NewFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private String mParam1;
 
-    public NewFragment() {
-        // Required empty public constructor
-    }
+    public NewFragment() {}
 
     public static NewFragment newInstance(String param1) {
         NewFragment fragment = new NewFragment();
@@ -83,13 +81,14 @@ public class NewFragment extends Fragment {
                 index = spEquipe.getSelectedItemPosition();
                 equipeId = bd.getEquipeId(alEquipes.get(index));
                 index = spStatus.getSelectedItemPosition();
-                statusId = bd.getEquipeId(alStatus.get(index));
+                statusId = bd.getStatusId(alStatus.get(index));
                 index = spTipoOcorrencia.getSelectedItemPosition();
                 tipoOcorrenciaId = bd.getTipoOcorrenciaId(alTipoOcorrencia.get(index));
                 index = spSistema.getSelectedItemPosition();
                 sistemaId = bd.getSistemaId(alSistema.get(index));
 
                 bd.insertOcorrencia(usuarioId, empresaId, equipeId, statusId, tipoOcorrenciaId, sistemaId);
+                ItemFragment.update();
             }
         });
 
@@ -119,7 +118,7 @@ public class NewFragment extends Fragment {
     }
 
     private void makeStatus (View view) {
-        alStatus = bd.getEquipesToArrayList();
+        alStatus = bd.getStatusToArrayList();
         spStatus = (Spinner) view.findViewById(R.id.spStatus);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, alStatus);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);

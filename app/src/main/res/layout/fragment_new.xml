@@ -1,124 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".NewFragment">
+    android:layout_height="fill_parent"
+    android:layout_margin="5dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp">
 
-    <TextView
-        android:id="@+id/tvUsuarioNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="NomeUsuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvEmpresa"
-        android:layout_width="56dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="Empresa"
-        app:layout_constraintEnd_toStartOf="@+id/spEmpresa"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spEmpresa" />
+            <TextView
+                android:id="@+id/tvUsuarioNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="NomeUsuario"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteY="16dp" />
 
-    <TextView
-        android:id="@+id/tvEquipe"
-        android:layout_width="43dp"
-        android:layout_height="wrap_content"
-        android:text="Equipe"
-        app:layout_constraintStart_toStartOf="@+id/tvEmpresa"
-        app:layout_constraintTop_toTopOf="@+id/spEquipe" />
+            <TextView
+                android:id="@+id/tvEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Empresa"
+                app:layout_constraintEnd_toStartOf="@+id/spEmpresa"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvUsuarioNome" />
 
-    <TextView
-        android:id="@+id/tvStatus"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:text="Status"
-        app:layout_constraintStart_toStartOf="@+id/tvEquipe"
-        app:layout_constraintTop_toTopOf="@+id/spStatus" />
+            <Spinner
+                android:id="@+id/spEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvUsuarioNome" />
 
-    <TextView
-        android:id="@+id/tvTipoOcorrencia"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:text="Tipo Ocor."
-        app:layout_constraintStart_toStartOf="@+id/tvStatus"
-        app:layout_constraintTop_toTopOf="@+id/spTipoOcorrencia" />
+            <TextView
+                android:id="@+id/tvEquipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Equipe"
+                app:layout_constraintStart_toStartOf="@+id/tvEmpresa"
+                app:layout_constraintTop_toTopOf="@+id/spEquipe" />
 
-    <TextView
-        android:id="@+id/tvSistema"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:text="Sistema"
-        app:layout_constraintStart_toStartOf="@+id/tvTipoOcorrencia"
-        app:layout_constraintTop_toTopOf="@+id/spSistema" />
+            <Spinner
+                android:id="@+id/spEquipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spEmpresa" />
 
-    <Spinner
-        android:id="@+id/spEmpresa"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="32dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUsuarioNome" />
+            <TextView
+                android:id="@+id/tvTipoOcorrencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Tipo Ocor."
+                app:layout_constraintStart_toStartOf="@+id/tvStatus"
+                app:layout_constraintTop_toTopOf="@+id/spTipoOcorrencia" />
 
-    <Spinner
-        android:id="@+id/spEquipe"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="32dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spEmpresa" />
+            <Spinner
+                android:id="@+id/spTipoOcorrencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spStatus" />
 
-    <Spinner
-        android:id="@+id/spStatus"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spEquipe" />
+            <TextView
+                android:id="@+id/tvSistema"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Sistema"
+                app:layout_constraintStart_toStartOf="@+id/tvTipoOcorrencia"
+                app:layout_constraintTop_toTopOf="@+id/spSistema" />
 
-    <Spinner
-        android:id="@+id/spTipoOcorrencia"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="32dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spStatus" />
+            <Spinner
+                android:id="@+id/spSistema"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spTipoOcorrencia" />
 
-    <Spinner
-        android:id="@+id/spSistema"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="28dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spTipoOcorrencia" />
+            <TextView
+                android:id="@+id/tvFuncionarios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Funcionarios Impactados"
+                app:layout_constraintStart_toStartOf="@+id/tvSistema"
+                app:layout_constraintTop_toTopOf="@+id/edFuncionarios" />
 
-    <Button
-        android:id="@+id/btGravar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="GRAVAR"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spSistema" />
+            <EditText
+                android:id="@+id/edFuncionarios"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="@+id/spSistema"
+                app:layout_constraintTop_toBottomOf="@+id/edObservacoes" />
 
-</android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/tvCasosImpactados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginEnd="10dp"
+                android:text="Casos Impactados"
+                app:layout_constraintEnd_toStartOf="@+id/edCasos"
+                app:layout_constraintTop_toTopOf="@+id/edCasos" />
+
+            <EditText
+                android:id="@+id/edCasos"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="@+id/spSistema"
+                app:layout_constraintTop_toBottomOf="@+id/edObservacoes" />
+
+            <EditText
+                android:id="@+id/edCanalSuporte"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Canal Suporte"
+                android:inputType="textShortMessage|textMultiLine"
+                app:layout_constraintTop_toBottomOf="@+id/edFuncionarios"
+                tools:layout_editor_absoluteX="29dp" />
+
+            <EditText
+                android:id="@+id/edProtocolo"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Protocolo"
+                android:inputType="textShortMessage|textMultiLine"
+                app:layout_constraintTop_toBottomOf="@+id/edCanalSuporte"
+                tools:layout_editor_absoluteX="29dp" />
+
+            <EditText
+                android:id="@+id/edObservacoes"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Observações"
+                android:inputType="textLongMessage|textMultiLine"
+                app:layout_constraintTop_toBottomOf="@+id/spSistema"
+                tools:layout_editor_absoluteX="29dp" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Status"
+                app:layout_constraintStart_toStartOf="@+id/tvEquipe"
+                app:layout_constraintTop_toTopOf="@+id/spStatus" />
+
+            <Spinner
+                android:id="@+id/spStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spEquipe" />
+
+            <Button
+                android:id="@+id/btGravar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="16dp"
+                android:text="GRAVAR"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edProtocolo" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

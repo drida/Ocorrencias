@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -34,7 +36,16 @@ public class NewFragment extends Fragment {
     static int sistemaId;
     static Spinner spSistema;
     static ArrayList<String> alSistema;
-
+    static EditText edFuncionarios;
+    static String funcionarios;
+    static EditText edCasos;
+    static String casos;
+    static EditText edCanalSuporte;
+    static String canalSuporte;
+    static EditText edProtocolo;
+    static String protocolo;
+    static EditText edObservacoes;
+    static String observacoes;
     static Button btGravar;
 
     private static final String ARG_PARAM1 = "param1";
@@ -69,6 +80,11 @@ public class NewFragment extends Fragment {
         makeStatus(view);
         makeTipoOcorrencia(view);
         makeSistema(view);
+        edFuncionarios = (EditText) view.findViewById(R.id.edFuncionarios);
+        edCasos = (EditText) view.findViewById(R.id.edCasos);
+        edCanalSuporte = (EditText) view.findViewById(R.id.edCanalSuporte);
+        edProtocolo = (EditText) view.findViewById(R.id.edProtocolo);
+        edObservacoes = (EditText) view.findViewById(R.id.edObservacoes);
 
         btGravar = (Button) view.findViewById(R.id.btGravar);
         btGravar.setOnClickListener(new View.OnClickListener() {
@@ -86,13 +102,36 @@ public class NewFragment extends Fragment {
                 tipoOcorrenciaId = bd.getTipoOcorrenciaId(alTipoOcorrencia.get(index));
                 index = spSistema.getSelectedItemPosition();
                 sistemaId = bd.getSistemaId(alSistema.get(index));
+                funcionarios = edFuncionarios.getText().toString();
+                casos = edCasos.getText().toString();
+                canalSuporte = edCanalSuporte.getText().toString();
+                protocolo = edProtocolo.getText().toString();
+                observacoes = edObservacoes.getText().toString();
 
-                bd.insertOcorrencia(usuarioId, empresaId, equipeId, statusId, tipoOcorrenciaId, sistemaId);
+                if(funcionarios.matches("")) funcionarios = "0";
+                if(casos.matches("")) casos = "0";
+
+                bd.insertOcorrencia(usuarioId, empresaId, equipeId, statusId, tipoOcorrenciaId, sistemaId, funcionarios, casos, canalSuporte, protocolo, observacoes);
                 ItemFragment.update();
+                Toast.makeText(getContext(), "Nova ocorrencia criada com sucesso.", Toast.LENGTH_SHORT).show();
+                limpaFormulario();
             }
         });
 
         return view;
+    }
+
+    private void limpaFormulario () {
+        spEmpresas.setSelection(0);
+        spEquipe.setSelection(0);
+        spStatus.setSelection(0);
+        spTipoOcorrencia.setSelection(0);
+        spSistema.setSelection(0);
+        edFuncionarios.setText("");
+        edCasos.setText("");
+        edCanalSuporte.setText("");
+        edProtocolo.setText("");
+        edObservacoes.setText("");
     }
 
     private void makeUsuario (View view) {

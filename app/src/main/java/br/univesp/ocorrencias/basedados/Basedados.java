@@ -231,9 +231,15 @@ public class Basedados {
         return null;
     }
 
-    public void insertOcorrencia(int usuarioId, int empresaId, int equipeId, int statusId, int tipoOcorrenciaId, int sistemaId) {
-        String query = "insert into public.ocorrencia (idempresa, idequipe, idstatus, idusuario, idtipoocorrencia, idsistemas) values " +
-                "(" + empresaId + "," + equipeId + "," + statusId + "," + usuarioId + "," + tipoOcorrenciaId + "," + sistemaId + ");";
+    public void insertOcorrencia(int usuarioId, int empresaId, int equipeId, int statusId,
+                                 int tipoOcorrenciaId, int sistemaId, String funcionarios,
+                                 String casos, String canalSuporte, String protocolo,
+                                 String observacoes) {
+        String query = "insert into public.ocorrencia (idempresa, idequipe, idstatus, idusuario, idtipoocorrencia," +
+                "observacoes, idsistemas, funcionariosafetados, casosimpactados, canalsuporte, protocolo, datahoraocorrencia) values " +
+                "(" + empresaId + "," + equipeId + "," + statusId + "," + usuarioId + "," + tipoOcorrenciaId + ",'" +
+                observacoes + "'," + sistemaId + "," + funcionarios + "," + casos + ",'" + canalSuporte + "','" +
+                protocolo + "',now());";
         getResultSet(query, false);
     }
 }

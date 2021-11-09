@@ -112,3 +112,6 @@ AS SELECT o.id,
      JOIN etapaimpactada eti ON eti.id = o.idetapaimpactada
      JOIN tipoocorrencia tpo ON tpo.id = o.idtipoocorrencia
      JOIN sistemas sis ON sis.id = o.idsistemas;
+    
+insert into STATUS (id, nome) values (1, 'PENDENTE');
+insert into STATUS (id, nome) values (2, 'CONCLUÍDO');

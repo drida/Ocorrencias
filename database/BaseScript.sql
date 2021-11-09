@@ -24,6 +24,18 @@ CREATE TABLE public.status (
 	CONSTRAINT status_pk PRIMARY KEY (id)
 );
 
+CREATE TABLE public.areaimpactada (
+	id serial NOT NULL,
+	nome varchar(60),
+	CONSTRAINT areaimpactada_pk PRIMARY KEY (id)
+);
+
+CREATE TABLE public.etapaimpactada (
+	id serial NOT NULL,
+	nome varchar(60),
+	CONSTRAINT etapaimpactada_pk PRIMARY KEY (id)
+);
+
 CREATE TABLE public.usuario (
 	id serial NOT NULL,
 	nome varchar(60),
@@ -49,6 +61,8 @@ CREATE TABLE public.ocorrencia (
 	idempresa int NOT NULL,
 	idequipe int NOT NULL,
 	idstatus int NOT NULL,
+	idareaimpactada int NOT NULL,
+	idetapaimpactada int NOT NULL,
 	idusuario int NOT NULL,
 	idtipoocorrencia int NOT NULL,
 	observacoes varchar(255),
@@ -69,12 +83,16 @@ ALTER TABLE public.ocorrencia ADD CONSTRAINT ocorrencia_fk_status FOREIGN KEY (i
 ALTER TABLE public.ocorrencia ADD CONSTRAINT ocorrencia_fk_usuario FOREIGN KEY (idusuario) REFERENCES public.usuario(id) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE public.ocorrencia ADD CONSTRAINT ocorrencia_fk_tipoocorrencia FOREIGN KEY (idtipoocorrencia) REFERENCES public.tipoocorrencia(id) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE public.ocorrencia ADD CONSTRAINT ocorrencia_fk_sistemas FOREIGN KEY (idsistemas) REFERENCES public.sistemas(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE public.ocorrencia ADD CONSTRAINT ocorrencia_fk_areaimpactada FOREIGN KEY (idareaimpactada) REFERENCES public.areaimpactada(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE public.ocorrencia ADD CONSTRAINT ocorrencia_fk_etapaimpactada FOREIGN KEY (idetapaimpactada) REFERENCES public.etapaimpactada(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE OR REPLACE VIEW public.ocorrencias
 AS SELECT o.id,
     emp.nome AS empresa,
     eqp.nome AS equipe,
     sts.nome AS status,
+    ari.nome AS area,
+    eti.nome AS etapa,
     tpo.nome AS tipo,
     o.observacoes,
     sis.nome AS sistema,
@@ -90,5 +108,7 @@ AS SELECT o.id,
      JOIN empresa emp ON emp.id = o.idempresa
      JOIN equipe eqp ON eqp.id = o.idequipe
      JOIN status sts ON sts.id = o.idstatus
+     JOIN areaimpactada ari ON ari.id = o.idareaimpactada
+     JOIN etapaimpactada eti ON eti.id = o.idetapaimpactada
      JOIN tipoocorrencia tpo ON tpo.id = o.idtipoocorrencia
      JOIN sistemas sis ON sis.id = o.idsistemas;

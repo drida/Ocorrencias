@@ -219,6 +219,36 @@ public class Basedados {
         return toArrayList();
     }
 
+    public void getAreaImpactada() {
+        String query = "select * from public.areaimpactada;";
+        getResultSet(query);
+    }
+
+    public int getAreaImpactadaId(String nome) {
+        String query = "select * from public.areaimpactada where nome = '"+nome+"';";
+        return getId(query);
+    }
+
+    public ArrayList<String> getAreaImpactadaToArrayList() {
+        getAreaImpactada();
+        return toArrayList();
+    }
+
+    public void getEtapaImpactada() {
+        String query = "select * from public.etapaimpactada;";
+        getResultSet(query);
+    }
+
+    public int getEtapaImpactadaId(String nome) {
+        String query = "select * from public.etapaimpactada where nome = '"+nome+"';";
+        return getId(query);
+    }
+
+    public ArrayList<String> getEtapaImpactadaToArrayList() {
+        getEtapaImpactada();
+        return toArrayList();
+    }
+
     public ResultSet getOcorrencias() {
         String query;
         try {
@@ -232,12 +262,13 @@ public class Basedados {
     }
 
     public void insertOcorrencia(int usuarioId, int empresaId, int equipeId, int statusId,
-                                 int tipoOcorrenciaId, int sistemaId, String funcionarios,
+                                 int tipoOcorrenciaId, int sistemaId, int areaImpactadaId,
+                                 int etapaImpactadaId, String funcionarios,
                                  String casos, String canalSuporte, String protocolo,
                                  String observacoes) {
-        String query = "insert into public.ocorrencia (idempresa, idequipe, idstatus, idusuario, idtipoocorrencia," +
+        String query = "insert into public.ocorrencia (idempresa, idequipe, idstatus, idareaimpactada, idetapaimpactada, idusuario, idtipoocorrencia," +
                 "observacoes, idsistemas, funcionariosafetados, casosimpactados, canalsuporte, protocolo, datahoraocorrencia) values " +
-                "(" + empresaId + "," + equipeId + "," + statusId + "," + usuarioId + "," + tipoOcorrenciaId + ",'" +
+                "(" + empresaId + "," + equipeId + "," + statusId + "," + areaImpactadaId + "," + etapaImpactadaId + "," + usuarioId + "," + tipoOcorrenciaId + ",'" +
                 observacoes + "'," + sistemaId + "," + funcionarios + "," + casos + ",'" + canalSuporte + "','" +
                 protocolo + "',now());";
         getResultSet(query, false);

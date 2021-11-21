@@ -36,6 +36,12 @@ public class NewFragment extends Fragment {
     static int sistemaId;
     static Spinner spSistema;
     static ArrayList<String> alSistema;
+    static int areaImpactadaId;
+    static Spinner spAreaImpactada;
+    static ArrayList<String> alAreaImpactada;
+    static int etapaImpactadaId;
+    static Spinner spEtapaImpactada;
+    static ArrayList<String> alEtapaImpactada;
     static EditText edFuncionarios;
     static String funcionarios;
     static EditText edCasos;
@@ -80,6 +86,8 @@ public class NewFragment extends Fragment {
         makeStatus(view);
         makeTipoOcorrencia(view);
         makeSistema(view);
+        makeAreaImpactada(view);
+        makeEtapaImpactada(view);
         edFuncionarios = (EditText) view.findViewById(R.id.edFuncionarios);
         edCasos = (EditText) view.findViewById(R.id.edCasos);
         edCanalSuporte = (EditText) view.findViewById(R.id.edCanalSuporte);
@@ -102,6 +110,10 @@ public class NewFragment extends Fragment {
                 tipoOcorrenciaId = bd.getTipoOcorrenciaId(alTipoOcorrencia.get(index));
                 index = spSistema.getSelectedItemPosition();
                 sistemaId = bd.getSistemaId(alSistema.get(index));
+                index = spAreaImpactada.getSelectedItemPosition();
+                areaImpactadaId = bd.getAreaImpactadaId(alAreaImpactada.get(index));
+                index = spEtapaImpactada.getSelectedItemPosition();
+                etapaImpactadaId = bd.getEtapaImpactadaId(alEtapaImpactada.get(index));
                 funcionarios = edFuncionarios.getText().toString();
                 casos = edCasos.getText().toString();
                 canalSuporte = edCanalSuporte.getText().toString();
@@ -111,7 +123,7 @@ public class NewFragment extends Fragment {
                 if(funcionarios.matches("")) funcionarios = "0";
                 if(casos.matches("")) casos = "0";
 
-                bd.insertOcorrencia(usuarioId, empresaId, equipeId, statusId, tipoOcorrenciaId, sistemaId, funcionarios, casos, canalSuporte, protocolo, observacoes);
+                bd.insertOcorrencia(usuarioId, empresaId, equipeId, statusId, tipoOcorrenciaId, sistemaId, areaImpactadaId, etapaImpactadaId,funcionarios, casos, canalSuporte, protocolo, observacoes);
                 ItemFragment.update();
                 Toast.makeText(getContext(), "Nova ocorrencia criada com sucesso.", Toast.LENGTH_SHORT).show();
                 limpaFormulario();
@@ -178,5 +190,21 @@ public class NewFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, alSistema);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spSistema.setAdapter(adapter);
+    }
+
+    private void makeAreaImpactada (View view) {
+        alAreaImpactada = bd.getAreaImpactadaToArrayList();
+        spAreaImpactada = (Spinner) view.findViewById(R.id.spAreaImpactada);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, alAreaImpactada);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spAreaImpactada.setAdapter(adapter);
+    }
+
+    private void makeEtapaImpactada (View view) {
+        alEtapaImpactada = bd.getEtapaImpactadaToArrayList();
+        spEtapaImpactada = (Spinner) view.findViewById(R.id.spEtapaImpactada);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, alEtapaImpactada);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spEtapaImpactada.setAdapter(adapter);
     }
 }

@@ -103,12 +103,48 @@
                 app:layout_constraintTop_toBottomOf="@+id/spTipoOcorrencia" />
 
             <TextView
+                android:id="@+id/tvAreaImpactada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Área Impactada"
+                app:layout_constraintStart_toStartOf="@+id/tvSistema"
+                app:layout_constraintTop_toTopOf="@+id/spAreaImpactada" />
+
+            <Spinner
+                android:id="@+id/spAreaImpactada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spSistema" />
+
+            <TextView
+                android:id="@+id/tvEtapaImpactada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Etapa Impactada"
+                app:layout_constraintStart_toStartOf="@+id/tvAreaImpactada"
+                app:layout_constraintTop_toTopOf="@+id/spEtapaImpactada" />
+
+            <Spinner
+                android:id="@+id/spEtapaImpactada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spAreaImpactada" />
+
+            <TextView
                 android:id="@+id/tvFuncionarios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="Funcionarios Impactados"
-                app:layout_constraintStart_toStartOf="@+id/tvSistema"
+                app:layout_constraintStart_toStartOf="@+id/tvEtapaImpactada"
                 app:layout_constraintTop_toTopOf="@+id/edFuncionarios" />
 
             <EditText

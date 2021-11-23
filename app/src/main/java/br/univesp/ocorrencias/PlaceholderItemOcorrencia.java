@@ -44,13 +44,15 @@ public class PlaceholderItemOcorrencia {
             builder.append(resultSet.getString(2)+" / ");
             builder.append(resultSet.getString(3)+"\n");
             builder.append(resultSet.getString(5)+" / ");
-            builder.append(resultSet.getString(7)+"\n");
-            builder.append("Func. afetado(s): "+ resultSet.getString(8)+"\n");
-            builder.append("Casos Impactado(s): "+ resultSet.getString(9)+"\n");
-            builder.append(resultSet.getString(10)+" / ");
-            builder.append(resultSet.getString(11)+"\n");
             builder.append(resultSet.getString(6)+"\n");
-            builder.append("Abertura: " +resultSet.getString(12)+"\n");
+            builder.append(resultSet.getString(7)+"\n");
+            builder.append(resultSet.getString(9)+"\n");
+            builder.append("Func. afetado(s): "+ resultSet.getString(10)+"\n");
+            builder.append("Casos Impactado(s): "+ resultSet.getString(11)+"\n");
+            builder.append(resultSet.getString(12)+" / ");
+            builder.append(resultSet.getString(13)+"\n");
+            builder.append(resultSet.getString(8)+"\n");
+            builder.append("Abertura: " +resultSet.getString(14)+"\n");
 
             detalhes = builder.toString();
         } catch (Exception e) {

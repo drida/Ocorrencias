@@ -252,7 +252,7 @@ public class Basedados {
     public ResultSet getOcorrencias() {
         String query;
         try {
-            query = "select * from public.ocorrencias where idusuario = " + usuarioId + ";";
+            query = "select * from public.ocorrencias where idusuario = " + usuarioId + " order by id;";
             getResultSet(query);
             return resultSet;
         } catch (Exception e) {

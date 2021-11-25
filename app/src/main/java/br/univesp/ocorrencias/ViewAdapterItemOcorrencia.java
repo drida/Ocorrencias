@@ -1,7 +1,10 @@
 package br.univesp.ocorrencias;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -12,6 +15,7 @@ import java.util.List;
 
 public class ViewAdapterItemOcorrencia extends RecyclerView.Adapter<ViewAdapterItemOcorrencia.ViewHolderItem> {
 
+    private static final String TAG = "tag";
     private final List<PlaceholderItem> mValues;
 
     public ViewAdapterItemOcorrencia(List<PlaceholderItem> items) {
@@ -36,7 +40,8 @@ public class ViewAdapterItemOcorrencia extends RecyclerView.Adapter<ViewAdapterI
         return mValues.size();
     }
 
-    public class ViewHolderItem extends RecyclerView.ViewHolder {
+    public class ViewHolderItem extends RecyclerView.ViewHolder implements View.OnClickListener{
+
         public final TextView mIdView;
         public final TextView mContentView;
         public final TextView mDetailsView;
@@ -47,11 +52,19 @@ public class ViewAdapterItemOcorrencia extends RecyclerView.Adapter<ViewAdapterI
             mIdView = binding.itemNumber;
             mContentView = binding.content;
             mDetailsView = binding.details;
+            binding.getRoot().setOnClickListener(this);
         }
 
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";
+        }
+
+        @Override
+        public void onClick(View view) {
+            Integer id = Integer.parseInt(mValues.get(getAdapterPosition()).id);
+            StatusActivity.setIdOcorrencia(id);
+            view.getContext().startActivity(new Intent(view.getContext(),StatusActivity.class));
         }
     }
 }

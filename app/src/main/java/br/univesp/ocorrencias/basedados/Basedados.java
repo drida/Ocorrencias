@@ -261,6 +261,23 @@ public class Basedados {
         return null;
     }
 
+    public ResultSet getOcorrencia(int id) {
+        String query;
+        try {
+            query = "select * from public.ocorrencias where id = " + id;
+            getResultSet(query);
+            return resultSet;
+        } catch (Exception e) {
+            e.printStackTrace();;
+        }
+        return null;
+    }
+
+    public void updateStatus (int ocorrenciaId, int statusId){
+        String query = "update public.ocorrencia set idstatus = " + statusId + ", datahoraconclusao = now(), " +
+                "tempoparaconclusao = extract(epoch from(now() - datahoraocorrencia))/3600 where id = " +  ocorrenciaId;
+        getResultSet(query, false);
+    }
     public void insertOcorrencia(int usuarioId, int empresaId, int equipeId, int statusId,
                                  int tipoOcorrenciaId, int sistemaId, int areaImpactadaId,
                                  int etapaImpactadaId, String funcionarios,

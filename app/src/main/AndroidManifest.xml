@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ocorrencias">
         <activity
+            android:name=".StatusActivity"
+            android:exported="false" />
+        <activity
             android:name=".TabActivity"
             android:exported="true"
             android:label="@string/title_activity_tab"

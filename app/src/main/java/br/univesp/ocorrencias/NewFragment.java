@@ -139,6 +139,8 @@ public class NewFragment extends Fragment {
         spStatus.setSelection(0);
         spTipoOcorrencia.setSelection(0);
         spSistema.setSelection(0);
+        spAreaImpactada.setSelection(0);
+        spEtapaImpactada.setSelection(0);
         edFuncionarios.setText("");
         edCasos.setText("");
         edCanalSuporte.setText("");

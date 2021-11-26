@@ -278,6 +278,7 @@ public class Basedados {
                 "tempoparaconclusao = extract(epoch from(now() - datahoraocorrencia))/3600 where id = " +  ocorrenciaId;
         getResultSet(query, false);
     }
+
     public void insertOcorrencia(int usuarioId, int empresaId, int equipeId, int statusId,
                                  int tipoOcorrenciaId, int sistemaId, int areaImpactadaId,
                                  int etapaImpactadaId, String funcionarios,

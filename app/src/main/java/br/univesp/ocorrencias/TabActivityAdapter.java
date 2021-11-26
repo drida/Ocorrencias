@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class TabActivityAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int TAB_COUNT = 3;
+    private static final int TAB_COUNT = 2;
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
     private final Context mContext;
 
